@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  
+  <title>Time Sheet</title>
+</head>
+<body>
+  
+  <div class="container">
+            
+    <form id="form" onsubmit="sendEmail(); reset(); return false;">                 
+     <div id="maindb">
+         <h3 id="maintext">TIME SHEET</h3>
+         <h5 id="selectText">Please Complete the Following Fields</h5>
+         <input type="text" id="qb" placeholder = "Patient QB" required> </br>
+         <input type="text" id="Lname" placeholder = "Patient Last Name" required></br>
+         <input type="text" id="Fname" placeholder = "Patient First Name" required></br>
+         <input type="date" id="dateIn" placeholder = "Date In" required></br>
+         <input type="date" id="dateOut" placeholder = "Date Out" required></br>
+         <input type="email" id="email" placeholder = "Email" required></br>
+         <p id="fbutton"><input type="submit" id="button"  name="submit" value="SUBMIT"></p>
+     </div>
+    </form>    
+    
+  </div>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+                    Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "sajjad.shawon2@gmail.com",
+                Password : "AEA07997DA9D25F8AEBC886BAE778F6C16A0",
+                To : document.getElementById("email").value,
+                From : "sajjad.shawon2@gmail.com",
+                Subject : document.getElementById("dateIn").value + " Missed EVV Record/EVV Error",
+                Body : "Dear Caregiver, <br><br>"+
+                "With reference to your missed EVV record / EVV error please click on the following link:" +
+                "https://candthomecare.us/evv_timesheet/#forward" +
+                "<br><br>All fields are required, and both you and the patient must sign prior to submitting form." +
+                "<br><br>Thank You & Regards, <br> EVV Team" +
+                "<br><br>evv@candthomecare.com <br> 718-424-4200" 
+           
+            }).then(
+            message => alert("Message has sent successfully")
+            );
+        }
+    </script>
+
+</body>
+</html>
